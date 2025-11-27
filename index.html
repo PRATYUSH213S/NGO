@@ -1247,34 +1247,69 @@
         const quoteAuthor = document.getElementById('quoteAuthor');
         const refreshBtn = document.getElementById('refreshQuote');
 
+        // Fallback quotes in case API fails
+        const fallbackQuotes = [
+            { content: "Hope is being able to see that there is light despite all of the darkness.", author: "Desmond Tutu" },
+            { content: "You never know how strong you are until being strong is your only choice.", author: "Bob Marley" },
+            { content: "The human spirit is stronger than anything that can happen to it.", author: "C.C. Scott" },
+            { content: "Courage doesn't always roar. Sometimes courage is the quiet voice at the end of the day saying, 'I will try again tomorrow.'", author: "Mary Anne Radmacher" },
+            { content: "Strength does not come from physical capacity. It comes from an indomitable will.", author: "Mahatma Gandhi" }
+        ];
+
         async function fetchQuote() {
+            if (!quoteText || !quoteAuthor || !refreshBtn) {
+                console.error('Quote elements not found');
+                return;
+            }
+
             try {
                 quoteText.textContent = 'Loading quote...';
                 quoteText.classList.add('loading');
                 quoteAuthor.textContent = '';
                 refreshBtn.disabled = true;
 
-                const response = await fetch('https://api.quotable.io/random');
+                const response = await fetch('https://api.quotable.io/random', {
+                    method: 'GET',
+                    headers: {
+                        'Accept': 'application/json'
+                    }
+                });
+
                 if (!response.ok) {
-                    throw new Error('Failed to fetch quote');
+                    throw new Error(`HTTP error! status: ${response.status}`);
                 }
 
                 const data = await response.json();
-                quoteText.textContent = `"${data.content}"`;
-                quoteText.classList.remove('loading');
-                quoteAuthor.textContent = `— ${data.author}`;
-                refreshBtn.disabled = false;
+                
+                if (data && data.content && data.author) {
+                    quoteText.textContent = `"${data.content}"`;
+                    quoteText.classList.remove('loading');
+                    quoteAuthor.textContent = `— ${data.author}`;
+                    refreshBtn.disabled = false;
+                } else {
+                    throw new Error('Invalid response data');
+                }
             } catch (error) {
-                quoteText.textContent = 'Unable to load quote. Please try again.';
+                // Use fallback quote if API fails
+                const randomFallback = fallbackQuotes[Math.floor(Math.random() * fallbackQuotes.length)];
+                quoteText.textContent = `"${randomFallback.content}"`;
                 quoteText.classList.remove('loading');
-                quoteAuthor.textContent = '';
+                quoteAuthor.textContent = `— ${randomFallback.author}`;
                 refreshBtn.disabled = false;
-                console.error('Error fetching quote:', error);
+                console.warn('Using fallback quote. API error:', error);
             }
         }
 
-        fetchQuote();
-        refreshBtn.addEventListener('click', fetchQuote);
+        // Wait for DOM to be fully loaded
+        if (document.readyState === 'loading') {
+            document.addEventListener('DOMContentLoaded', fetchQuote);
+        } else {
+            fetchQuote();
+        }
+
+        if (refreshBtn) {
+            refreshBtn.addEventListener('click', fetchQuote);
+        }
 
         // Donation Dashboard - Dummy Data
         const donationsData = [
