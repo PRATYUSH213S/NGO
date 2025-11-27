@@ -1,0 +1,1433 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cancer Awareness & Support | Together We Stand Strong</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary-violet: #8B5CF6;
+            --primary-purple: #7C3AED;
+            --primary-blue: #6366F1;
+            --accent-pink: #EC4899;
+            --light-violet: #A78BFA;
+            --light-purple: #C4B5FD;
+            --text-dark: #1F2937;
+            --text-light: #6B7280;
+            --white: #FFFFFF;
+            --shadow: rgba(0, 0, 0, 0.1);
+            --gradient-1: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            --gradient-2: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+            --gradient-3: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Inter', 'Poppins', sans-serif;
+            line-height: 1.6;
+            color: var(--text-dark);
+            overflow-x: hidden;
+            background: #FAFBFC;
+        }
+
+        /* Navigation */
+        .navbar {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            box-shadow: 0 2px 20px rgba(0, 0, 0, 0.1);
+            z-index: 1000;
+            padding: 1rem 2rem;
+            transition: all 0.15s ease;
+        }
+
+        .navbar.scrolled {
+            padding: 0.75rem 2rem;
+            box-shadow: 0 4px 30px rgba(139, 92, 246, 0.15);
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+            background: linear-gradient(135deg, var(--primary-violet), var(--primary-purple));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--text-dark);
+            font-weight: 500;
+            transition: color 0.15s ease;
+            position: relative;
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: linear-gradient(135deg, var(--primary-violet), var(--primary-purple));
+            transition: width 0.15s ease;
+        }
+
+        .nav-links a:hover {
+            color: var(--primary-purple);
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        /* Landing Section */
+        .landing-section {
+            min-height: 100vh;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 50%, #f093fb 100%);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 2rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .landing-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('https://images.unsplash.com/photo-1559757148-5c350d0d3c56?ixlib=rb-4.0.3&auto=format&fit=crop&w=2000&q=80') center/cover;
+            opacity: 0.1;
+            z-index: 0;
+        }
+
+
+        .landing-content {
+            max-width: 1000px;
+            text-align: center;
+            z-index: 1;
+            position: relative;
+        }
+
+        .landing-title {
+            font-size: 4.5rem;
+            font-weight: 800;
+            color: var(--white);
+            margin-bottom: 1.5rem;
+            text-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+            animation: fadeInDown 0.4s ease-out;
+            line-height: 1.2;
+            letter-spacing: -1px;
+        }
+
+        .landing-subtitle {
+            font-size: 1.5rem;
+            font-weight: 300;
+            color: rgba(255, 255, 255, 0.95);
+            margin-bottom: 2rem;
+            animation: fadeInUp 0.4s ease-out 0.1s both;
+        }
+
+        .landing-message {
+            font-size: 1.25rem;
+            color: rgba(255, 255, 255, 0.9);
+            margin-bottom: 3rem;
+            line-height: 1.8;
+            animation: fadeInUp 0.4s ease-out 0.15s both;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .cta-buttons {
+            display: flex;
+            gap: 1.5rem;
+            justify-content: center;
+            flex-wrap: wrap;
+            animation: fadeInUp 0.4s ease-out 0.2s both;
+        }
+
+        .cta-btn {
+            padding: 1rem 2.5rem;
+            font-size: 1.1rem;
+            font-weight: 600;
+            border-radius: 50px;
+            border: none;
+            cursor: pointer;
+            transition: all 0.15s ease;
+            text-decoration: none;
+            display: inline-block;
+        }
+
+        .cta-btn-primary {
+            background: var(--white);
+            color: var(--primary-purple);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+        }
+
+        .cta-btn-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.3);
+        }
+
+        .cta-btn-secondary {
+            background: transparent;
+            color: var(--white);
+            border: 2px solid var(--white);
+        }
+
+        .cta-btn-secondary:hover {
+            background: rgba(255, 255, 255, 0.1);
+            transform: translateY(-3px);
+        }
+
+        .banner-image {
+            width: 100%;
+            max-width: 900px;
+            height: 450px;
+            object-fit: cover;
+            border-radius: 30px;
+            box-shadow: 0 30px 80px rgba(0, 0, 0, 0.4);
+            margin: 3rem 0 0;
+            animation: fadeInScale 0.5s ease-out 0.25s both;
+            border: 5px solid rgba(255, 255, 255, 0.2);
+        }
+
+        /* Stats Banner */
+        .stats-banner {
+            background: linear-gradient(135deg, var(--primary-violet), var(--primary-purple));
+            padding: 3rem 2rem;
+            margin-top: -50px;
+            position: relative;
+            z-index: 10;
+            border-radius: 20px;
+            box-shadow: 0 20px 60px rgba(139, 92, 246, 0.3);
+        }
+
+        .stats-grid-inline {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        .stat-item {
+            text-align: center;
+            color: var(--white);
+        }
+
+        .stat-number {
+            font-size: 2.5rem;
+            font-weight: 800;
+            margin-bottom: 0.5rem;
+        }
+
+        .stat-label {
+            font-size: 1rem;
+            opacity: 0.9;
+        }
+
+        /* Contact Form Section */
+        .contact-section {
+            padding: 8rem 2rem;
+            background: linear-gradient(to bottom, #FAFBFC, #F3F4F6);
+            position: relative;
+        }
+
+        .contact-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 100px;
+            background: linear-gradient(to bottom, transparent, rgba(139, 92, 246, 0.05));
+        }
+
+        .contact-container {
+            max-width: 700px;
+            width: 100%;
+            margin: 0 auto;
+            background: var(--white);
+            padding: 4rem;
+            border-radius: 30px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.1);
+            transition: transform 0.15s ease, box-shadow 0.15s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .contact-container::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 5px;
+            background: linear-gradient(90deg, var(--primary-violet), var(--primary-purple), var(--primary-blue));
+        }
+
+        .contact-container:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 30px 80px rgba(139, 92, 246, 0.2);
+        }
+
+        .section-title {
+            font-size: 3rem;
+            font-weight: 700;
+            background: linear-gradient(135deg, var(--primary-violet), var(--primary-purple));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 1rem;
+            text-align: center;
+            letter-spacing: -1px;
+        }
+
+        .section-subtitle {
+            text-align: center;
+            color: var(--text-light);
+            margin-bottom: 3rem;
+            font-size: 1.2rem;
+            line-height: 1.6;
+        }
+
+        .form-group {
+            margin-bottom: 2rem;
+            position: relative;
+        }
+
+        .form-label {
+            display: block;
+            margin-bottom: 0.75rem;
+            color: var(--text-dark);
+            font-weight: 600;
+            font-size: 1rem;
+        }
+
+        .form-input,
+        .form-textarea {
+            width: 100%;
+            padding: 1.125rem 1.25rem;
+            border: 2px solid #E5E7EB;
+            border-radius: 15px;
+            font-size: 1rem;
+            font-family: inherit;
+            transition: all 0.15s ease;
+            background: #F9FAFB;
+        }
+
+        .form-input:focus,
+        .form-textarea:focus {
+            outline: none;
+            border-color: var(--primary-violet);
+            background: var(--white);
+            box-shadow: 0 0 0 4px rgba(139, 92, 246, 0.1);
+            transform: translateY(-2px);
+        }
+
+        .form-textarea {
+            min-height: 150px;
+            resize: vertical;
+        }
+
+        .form-error {
+            color: #EF4444;
+            font-size: 0.875rem;
+            margin-top: 0.5rem;
+            display: none;
+            font-weight: 500;
+        }
+
+        .form-error.show {
+            display: block;
+            animation: shake 0.2s ease;
+        }
+
+        .submit-btn {
+            width: 100%;
+            padding: 1.25rem 2rem;
+            background: linear-gradient(135deg, var(--primary-violet), var(--primary-purple));
+            color: var(--white);
+            border: none;
+            border-radius: 15px;
+            font-size: 1.15rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.15s ease;
+            box-shadow: 0 10px 30px rgba(139, 92, 246, 0.3);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .submit-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 15px 40px rgba(139, 92, 246, 0.4);
+        }
+
+        .submit-btn:active {
+            transform: translateY(-1px);
+        }
+
+        /* Dashboard Section */
+        .dashboard-section {
+            padding: 8rem 2rem;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .dashboard-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg width="100" height="100" xmlns="http://www.w3.org/2000/svg"><defs><pattern id="grid" width="100" height="100" patternUnits="userSpaceOnUse"><path d="M 100 0 L 0 0 0 100" fill="none" stroke="rgba(255,255,255,0.05)" stroke-width="1"/></pattern></defs><rect width="100" height="100" fill="url(%23grid)"/></svg>');
+            opacity: 0.3;
+        }
+
+        .dashboard-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 1;
+        }
+
+        .dashboard-section .section-title {
+            color: var(--white);
+            -webkit-text-fill-color: var(--white);
+        }
+
+        .dashboard-section .section-subtitle {
+            color: rgba(255, 255, 255, 0.9);
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+            margin-bottom: 4rem;
+        }
+
+        .stat-card {
+            background: var(--white);
+            padding: 2.5rem;
+            border-radius: 25px;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.15);
+            text-align: center;
+            transition: all 0.2s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .stat-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 5px;
+            background: linear-gradient(90deg, var(--primary-violet), var(--primary-purple), var(--primary-blue));
+            transform: scaleX(0);
+            transition: transform 0.15s ease;
+        }
+
+        .stat-card:hover::before {
+            transform: scaleX(1);
+        }
+
+        .stat-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 60px rgba(139, 92, 246, 0.3);
+        }
+
+        .stat-icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            display: block;
+        }
+
+        .stat-value {
+            font-size: 3rem;
+            font-weight: 800;
+            background: linear-gradient(135deg, var(--primary-violet), var(--primary-purple));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 0.5rem;
+            line-height: 1;
+        }
+
+        .stat-label {
+            color: var(--text-light);
+            font-size: 1.1rem;
+            font-weight: 500;
+        }
+
+        .dashboard-content {
+            background: var(--white);
+            padding: 4rem;
+            border-radius: 30px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.2);
+            margin-top: 2rem;
+        }
+
+        .chart-container {
+            margin-bottom: 4rem;
+        }
+
+        .chart-title {
+            font-size: 1.75rem;
+            font-weight: 700;
+            background: linear-gradient(135deg, var(--primary-violet), var(--primary-purple));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 2rem;
+        }
+
+        .chart-bars {
+            display: flex;
+            align-items: flex-end;
+            justify-content: space-around;
+            gap: 1.5rem;
+            height: 350px;
+            padding: 2rem 1rem;
+            background: linear-gradient(to top, #F9FAFB, #FFFFFF);
+            border-radius: 20px;
+        }
+
+        .chart-bar-wrapper {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            height: 100%;
+            transition: transform 0.3s ease;
+        }
+
+        .chart-bar-wrapper:hover {
+            transform: translateY(-5px);
+        }
+
+        .chart-bar {
+            width: 100%;
+            background: linear-gradient(to top, var(--primary-violet), var(--primary-purple), var(--primary-blue));
+            border-radius: 12px 12px 0 0;
+            transition: all 0.15s ease;
+            position: relative;
+            min-height: 30px;
+            box-shadow: 0 5px 15px rgba(139, 92, 246, 0.3);
+        }
+
+        .chart-bar:hover {
+            box-shadow: 0 8px 25px rgba(139, 92, 246, 0.5);
+        }
+
+        .chart-bar-label {
+            margin-top: 1rem;
+            font-size: 0.95rem;
+            color: var(--text-dark);
+            font-weight: 600;
+        }
+
+        .chart-bar-value {
+            position: absolute;
+            top: -35px;
+            left: 50%;
+            transform: translateX(-50%);
+            font-size: 0.85rem;
+            font-weight: 700;
+            color: var(--primary-purple);
+            white-space: nowrap;
+            background: var(--white);
+            padding: 0.25rem 0.5rem;
+            border-radius: 5px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            opacity: 0;
+            transition: opacity 0.15s ease;
+        }
+
+        .chart-bar-wrapper:hover .chart-bar-value {
+            opacity: 1;
+        }
+
+        .donations-table {
+            width: 100%;
+            border-collapse: separate;
+            border-spacing: 0;
+            margin-top: 2rem;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05);
+        }
+
+        .donations-table thead {
+            background: linear-gradient(135deg, var(--primary-violet), var(--primary-purple));
+            color: var(--white);
+        }
+
+        .donations-table th {
+            padding: 1.25rem 1.5rem;
+            text-align: left;
+            font-weight: 600;
+            font-size: 1rem;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .donations-table td {
+            padding: 1.25rem 1.5rem;
+            border-bottom: 1px solid #F3F4F6;
+        }
+
+        .donations-table tbody tr {
+            transition: all 0.15s ease;
+            background: var(--white);
+        }
+
+        .donations-table tbody tr:hover {
+            background: linear-gradient(90deg, rgba(139, 92, 246, 0.05), rgba(124, 58, 237, 0.05));
+            transform: scale(1.01);
+        }
+
+        .donations-table tbody tr:last-child td {
+            border-bottom: none;
+        }
+
+        .donor-name {
+            font-weight: 600;
+            color: var(--text-dark);
+            font-size: 1.05rem;
+        }
+
+        .donation-amount {
+            font-weight: 700;
+            background: linear-gradient(135deg, var(--primary-violet), var(--primary-purple));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            font-size: 1.2rem;
+        }
+
+        .donation-date {
+            color: var(--text-light);
+            font-size: 0.95rem;
+        }
+
+        /* Quotes Section */
+        .quotes-section {
+            padding: 8rem 2rem;
+            background: linear-gradient(135deg, #4facfe 0%, #00f2fe 50%, #667eea 100%);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 70vh;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .quotes-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: radial-gradient(circle at 20% 50%, rgba(255,255,255,0.1) 0%, transparent 50%),
+                        radial-gradient(circle at 80% 80%, rgba(255,255,255,0.1) 0%, transparent 50%);
+        }
+
+        .quotes-container {
+            max-width: 800px;
+            width: 100%;
+            background: var(--white);
+            padding: 4rem;
+            border-radius: 30px;
+            box-shadow: 0 30px 80px rgba(0, 0, 0, 0.2);
+            text-align: center;
+            transition: transform 0.15s ease;
+            position: relative;
+            z-index: 1;
+        }
+
+        .quotes-container:hover {
+            transform: scale(1.02);
+        }
+
+        .quote-icon {
+            font-size: 4rem;
+            color: var(--primary-purple);
+            opacity: 0.2;
+            margin-bottom: 1rem;
+        }
+
+        .quote-text {
+            font-size: 1.75rem;
+            font-weight: 400;
+            color: var(--text-dark);
+            margin-bottom: 2rem;
+            line-height: 1.8;
+            font-style: italic;
+            min-height: 100px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .quote-author {
+            font-size: 1.25rem;
+            color: var(--primary-purple);
+            font-weight: 600;
+            margin-bottom: 2.5rem;
+        }
+
+        .refresh-btn {
+            padding: 1rem 2.5rem;
+            background: linear-gradient(135deg, var(--primary-violet), var(--primary-purple));
+            color: var(--white);
+            border: none;
+            border-radius: 50px;
+            font-size: 1.05rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.15s ease;
+            box-shadow: 0 10px 30px rgba(139, 92, 246, 0.3);
+        }
+
+        .refresh-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 40px rgba(139, 92, 246, 0.4);
+        }
+
+        .refresh-btn:active {
+            transform: translateY(-1px);
+        }
+
+        .loading {
+            color: var(--text-light);
+            font-style: normal;
+        }
+
+        /* Alert */
+        .alert {
+            position: fixed;
+            top: 100px;
+            right: 30px;
+            padding: 1.5rem 2rem;
+            background: linear-gradient(135deg, #10B981, #059669);
+            color: var(--white);
+            border-radius: 15px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+            z-index: 2000;
+            display: none;
+            animation: slideInRight 0.2s ease-out;
+            max-width: 400px;
+            font-weight: 500;
+        }
+
+        .alert.show {
+            display: block;
+        }
+
+        /* Footer */
+        .footer {
+            background: linear-gradient(135deg, #1F2937, #111827);
+            color: var(--white);
+            padding: 3rem 2rem;
+            text-align: center;
+        }
+
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .footer-text {
+            opacity: 0.8;
+            margin-bottom: 1rem;
+        }
+
+        /* Animations */
+        @keyframes fadeInDown {
+            from {
+                opacity: 0;
+                transform: translateY(-50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fadeInScale {
+            from {
+                opacity: 0;
+                transform: scale(0.9);
+            }
+            to {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+
+        @keyframes slideInRight {
+            from {
+                transform: translateX(150%);
+                opacity: 0;
+            }
+            to {
+                transform: translateX(0);
+                opacity: 1;
+            }
+        }
+
+        @keyframes shake {
+            0%, 100% { transform: translateX(0); }
+            25% { transform: translateX(-5px); }
+            75% { transform: translateX(5px); }
+        }
+
+        /* Scroll Animations */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: all 0.3s ease;
+        }
+
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .navbar {
+                padding: 1rem;
+            }
+
+            .nav-links {
+                gap: 1rem;
+                font-size: 0.9rem;
+            }
+
+            .landing-title {
+                font-size: 2.5rem;
+            }
+
+            .landing-subtitle {
+                font-size: 1.2rem;
+            }
+
+            .landing-message {
+                font-size: 1.1rem;
+            }
+
+            .banner-image {
+                height: 300px;
+            }
+
+            .contact-container,
+            .quotes-container,
+            .dashboard-content {
+                padding: 2.5rem 2rem;
+            }
+
+            .section-title {
+                font-size: 2.25rem;
+            }
+
+            .quote-text {
+                font-size: 1.4rem;
+                min-height: 120px;
+            }
+
+            .stats-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .chart-bars {
+                height: 250px;
+                gap: 0.75rem;
+            }
+
+            .alert {
+                right: 15px;
+                left: 15px;
+                max-width: none;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .nav-links {
+                display: none;
+            }
+
+            .landing-title {
+                font-size: 2rem;
+            }
+
+            .landing-message {
+                font-size: 1rem;
+            }
+
+            .banner-image {
+                height: 250px;
+            }
+
+            .contact-container,
+            .quotes-container,
+            .dashboard-content {
+                padding: 2rem 1.5rem;
+            }
+
+            .section-title {
+                font-size: 1.75rem;
+            }
+
+            .stat-value {
+                font-size: 2.25rem;
+            }
+
+            .chart-bars {
+                height: 200px;
+                flex-wrap: wrap;
+            }
+
+            .chart-bar-wrapper {
+                min-width: 50px;
+            }
+
+            .donations-table {
+                font-size: 0.875rem;
+            }
+
+            .donations-table th,
+            .donations-table td {
+                padding: 1rem 0.75rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar" id="navbar">
+        <div class="nav-container">
+            <div class="logo">💜 Cancer Awareness</div>
+            <ul class="nav-links">
+                <li><a href="#landing">Home</a></li>
+                <li><a href="#dashboard">Dashboard</a></li>
+                <li><a href="#contact">Contact</a></li>
+                <li><a href="#quotes">Inspiration</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Landing Section -->
+    <section class="landing-section" id="landing">
+        <div class="landing-content">
+            <h1 class="landing-title">Together We Stand Strong</h1>
+            <p class="landing-subtitle">Fighting Cancer with Hope, Support, and Unity</p>
+            <p class="landing-message">
+                Cancer affects millions of lives every year. Through awareness, support, and early detection, 
+                we can make a difference. Join us in spreading hope, providing resources, and standing together 
+                in the fight against cancer. Your journey matters, and you are not alone.
+            </p>
+            <div class="cta-buttons">
+                <a href="#contact" class="cta-btn cta-btn-primary">Get Involved</a>
+                <a href="#dashboard" class="cta-btn cta-btn-secondary">View Impact</a>
+            </div>
+            <img src="https://images.unsplash.com/photo-1559757148-5c350d0d3c56?ixlib=rb-4.0.3&auto=format&fit=crop&w=2000&q=80" 
+                 alt="Hope and Support" 
+                 class="banner-image">
+        </div>
+    </section>
+
+    <!-- Stats Banner -->
+    <div class="stats-banner fade-in">
+        <div class="stats-grid-inline">
+            <div class="stat-item">
+                <div class="stat-number">10K+</div>
+                <div class="stat-label">Lives Touched</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-number">500+</div>
+                <div class="stat-label">Active Volunteers</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-number">50+</div>
+                <div class="stat-label">Support Programs</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Donation Dashboard Section -->
+    <section class="dashboard-section fade-in" id="dashboard">
+        <div class="dashboard-container">
+            <h2 class="section-title">Donation Dashboard</h2>
+            <p class="section-subtitle">Track our impact and see how your contributions make a difference</p>
+            
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <span class="stat-icon">💰</span>
+                    <div class="stat-value" id="totalDonations">$0</div>
+                    <div class="stat-label">Total Donations</div>
+                </div>
+                <div class="stat-card">
+                    <span class="stat-icon">👥</span>
+                    <div class="stat-value" id="totalDonors">0</div>
+                    <div class="stat-label">Number of Donors</div>
+                </div>
+                <div class="stat-card">
+                    <span class="stat-icon">📊</span>
+                    <div class="stat-value" id="avgDonation">$0</div>
+                    <div class="stat-label">Average Donation</div>
+                </div>
+            </div>
+
+            <div class="dashboard-content">
+                <div class="chart-container">
+                    <h3 class="chart-title">Monthly Donation Trends</h3>
+                    <div class="chart-bars" id="chartBars"></div>
+                </div>
+
+                <div>
+                    <h3 class="chart-title">Recent Donations</h3>
+                    <table class="donations-table">
+                        <thead>
+                            <tr>
+                                <th>Donor Name</th>
+                                <th>Amount</th>
+                                <th>Date</th>
+                            </tr>
+                        </thead>
+                        <tbody id="donationsTableBody">
+                            <!-- Table rows will be populated by JavaScript -->
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Form Section -->
+    <section class="contact-section fade-in" id="contact">
+        <div class="contact-container">
+            <h2 class="section-title">Get In Touch</h2>
+            <p class="section-subtitle">We're here to listen, support, and help. Reach out to us.</p>
+            
+            <form id="contactForm">
+                <div class="form-group">
+                    <label for="name" class="form-label">Name *</label>
+                    <input type="text" 
+                           id="name" 
+                           name="name" 
+                           class="form-input" 
+                           placeholder="Enter your name"
+                           required>
+                    <span class="form-error" id="nameError">Please enter your name</span>
+                </div>
+
+                <div class="form-group">
+                    <label for="email" class="form-label">Email *</label>
+                    <input type="email" 
+                           id="email" 
+                           name="email" 
+                           class="form-input" 
+                           placeholder="Enter your email"
+                           required>
+                    <span class="form-error" id="emailError">Please enter a valid email address</span>
+                </div>
+
+                <div class="form-group">
+                    <label for="message" class="form-label">Message *</label>
+                    <textarea id="message" 
+                              name="message" 
+                              class="form-textarea" 
+                              placeholder="Share your thoughts, questions, or how we can help..."
+                              required></textarea>
+                    <span class="form-error" id="messageError">Please enter your message</span>
+                </div>
+
+                <button type="submit" class="submit-btn">Send Message</button>
+            </form>
+        </div>
+    </section>
+
+    <!-- Motivational Quotes Section -->
+    <section class="quotes-section fade-in" id="quotes">
+        <div class="quotes-container">
+            <div class="quote-icon">"</div>
+            <h2 class="section-title" style="color: var(--primary-purple); margin-bottom: 2rem;">Daily Inspiration</h2>
+            <p class="quote-text" id="quoteText">Loading quote...</p>
+            <p class="quote-author" id="quoteAuthor"></p>
+            <button class="refresh-btn" id="refreshQuote">🔄 Refresh Quote</button>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-content">
+            <p class="footer-text">© 2024 Cancer Awareness & Support. Built with ❤️ for hope and healing.</p>
+        </div>
+    </footer>
+
+    <!-- Alert -->
+    <div class="alert" id="alert">
+        <strong>Thank you! ✨</strong> Your message has been sent. We'll get back to you soon.
+    </div>
+
+    <script>
+        // Navbar scroll effect
+        const navbar = document.getElementById('navbar');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 50) {
+                navbar.classList.add('scrolled');
+            } else {
+                navbar.classList.remove('scrolled');
+            }
+        });
+
+        // Scroll animations - optimized
+        const observerOptions = {
+            threshold: 0.05,
+            rootMargin: '0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.fade-in').forEach(el => {
+            observer.observe(el);
+        });
+
+        // Smooth scroll for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    const offsetTop = target.offsetTop - 80;
+                    window.scrollTo({
+                        top: offsetTop,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+
+        // Contact Form Validation and Submission
+        const contactForm = document.getElementById('contactForm');
+        const nameInput = document.getElementById('name');
+        const emailInput = document.getElementById('email');
+        const messageInput = document.getElementById('message');
+        const nameError = document.getElementById('nameError');
+        const emailError = document.getElementById('emailError');
+        const messageError = document.getElementById('messageError');
+        const alert = document.getElementById('alert');
+
+        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+        nameInput.addEventListener('blur', () => validateName());
+        emailInput.addEventListener('blur', () => validateEmail());
+        messageInput.addEventListener('blur', () => validateMessage());
+
+        function validateName() {
+            const name = nameInput.value.trim();
+            if (name.length < 2) {
+                nameError.classList.add('show');
+                nameInput.style.borderColor = '#EF4444';
+                return false;
+            } else {
+                nameError.classList.remove('show');
+                nameInput.style.borderColor = '#E5E7EB';
+                return true;
+            }
+        }
+
+        function validateEmail() {
+            const email = emailInput.value.trim();
+            if (!emailRegex.test(email)) {
+                emailError.classList.add('show');
+                emailInput.style.borderColor = '#EF4444';
+                return false;
+            } else {
+                emailError.classList.remove('show');
+                emailInput.style.borderColor = '#E5E7EB';
+                return true;
+            }
+        }
+
+        function validateMessage() {
+            const message = messageInput.value.trim();
+            if (message.length < 10) {
+                messageError.classList.add('show');
+                messageInput.style.borderColor = '#EF4444';
+                return false;
+            } else {
+                messageError.classList.remove('show');
+                messageInput.style.borderColor = '#E5E7EB';
+                return true;
+            }
+        }
+
+        contactForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+
+            const isNameValid = validateName();
+            const isEmailValid = validateEmail();
+            const isMessageValid = validateMessage();
+
+            if (isNameValid && isEmailValid && isMessageValid) {
+                alert.classList.add('show');
+                contactForm.reset();
+                setTimeout(() => {
+                    alert.classList.remove('show');
+                }, 5000);
+            }
+        });
+
+        // Quotes API Integration
+        const quoteText = document.getElementById('quoteText');
+        const quoteAuthor = document.getElementById('quoteAuthor');
+        const refreshBtn = document.getElementById('refreshQuote');
+
+        async function fetchQuote() {
+            try {
+                quoteText.textContent = 'Loading quote...';
+                quoteText.classList.add('loading');
+                quoteAuthor.textContent = '';
+                refreshBtn.disabled = true;
+
+                const response = await fetch('https://api.quotable.io/random');
+                if (!response.ok) {
+                    throw new Error('Failed to fetch quote');
+                }
+
+                const data = await response.json();
+                quoteText.textContent = `"${data.content}"`;
+                quoteText.classList.remove('loading');
+                quoteAuthor.textContent = `— ${data.author}`;
+                refreshBtn.disabled = false;
+            } catch (error) {
+                quoteText.textContent = 'Unable to load quote. Please try again.';
+                quoteText.classList.remove('loading');
+                quoteAuthor.textContent = '';
+                refreshBtn.disabled = false;
+                console.error('Error fetching quote:', error);
+            }
+        }
+
+        fetchQuote();
+        refreshBtn.addEventListener('click', fetchQuote);
+
+        // Donation Dashboard - Dummy Data
+        const donationsData = [
+            { name: 'Sarah Johnson', amount: 500, date: '2024-01-15' },
+            { name: 'Michael Chen', amount: 250, date: '2024-01-18' },
+            { name: 'Emily Rodriguez', amount: 1000, date: '2024-01-20' },
+            { name: 'David Thompson', amount: 350, date: '2024-01-22' },
+            { name: 'Lisa Anderson', amount: 750, date: '2024-01-25' },
+            { name: 'James Wilson', amount: 200, date: '2024-02-01' },
+            { name: 'Maria Garcia', amount: 600, date: '2024-02-05' },
+            { name: 'Robert Brown', amount: 450, date: '2024-02-08' },
+            { name: 'Jennifer Lee', amount: 300, date: '2024-02-10' },
+            { name: 'William Taylor', amount: 800, date: '2024-02-12' },
+            { name: 'Patricia Martinez', amount: 150, date: '2024-02-15' },
+            { name: 'Christopher Davis', amount: 950, date: '2024-02-18' },
+            { name: 'Amanda White', amount: 400, date: '2024-02-20' },
+            { name: 'Daniel Harris', amount: 550, date: '2024-02-22' },
+            { name: 'Jessica Clark', amount: 700, date: '2024-02-25' },
+            { name: 'Matthew Lewis', amount: 320, date: '2024-03-01' },
+            { name: 'Ashley Walker', amount: 480, date: '2024-03-03' },
+            { name: 'Andrew Hall', amount: 650, date: '2024-03-05' },
+            { name: 'Stephanie Allen', amount: 280, date: '2024-03-08' },
+            { name: 'Joshua Young', amount: 1200, date: '2024-03-10' }
+        ];
+
+        function calculateStats() {
+            const totalDonations = donationsData.reduce((sum, donation) => sum + donation.amount, 0);
+            const uniqueDonors = new Set(donationsData.map(d => d.name)).size;
+            const avgDonation = totalDonations / donationsData.length;
+
+            // Animate numbers - faster
+            animateValue('totalDonations', 0, totalDonations, 600, '$');
+            animateValue('totalDonors', 0, uniqueDonors, 400, '');
+            animateValue('avgDonation', 0, Math.round(avgDonation), 600, '$');
+        }
+
+        function animateValue(id, start, end, duration, prefix = '') {
+            const element = document.getElementById(id);
+            const range = end - start;
+            const increment = Math.max(1, Math.floor(range / 30));
+            const stepTime = Math.max(10, duration / 30);
+            let current = start;
+
+            const timer = setInterval(() => {
+                current += increment;
+                if ((increment > 0 && current >= end) || (increment < 0 && current <= end)) {
+                    element.textContent = prefix + end.toLocaleString();
+                    clearInterval(timer);
+                } else {
+                    element.textContent = prefix + current.toLocaleString();
+                }
+            }, stepTime);
+        }
+
+        function generateMonthlyTrends() {
+            const monthlyData = {};
+            
+            donationsData.forEach(donation => {
+                const date = new Date(donation.date);
+                const monthKey = `${date.getFullYear()}-${String(date.getMonth() + 1).padStart(2, '0')}`;
+                const monthName = date.toLocaleString('default', { month: 'short' });
+                
+                if (!monthlyData[monthKey]) {
+                    monthlyData[monthKey] = { name: monthName, total: 0 };
+                }
+                monthlyData[monthKey].total += donation.amount;
+            });
+
+            const sortedMonths = Object.keys(monthlyData).sort();
+            const maxAmount = Math.max(...Object.values(monthlyData).map(m => m.total));
+
+            const chartBars = document.getElementById('chartBars');
+            chartBars.innerHTML = '';
+
+            sortedMonths.forEach((monthKey, index) => {
+                const month = monthlyData[monthKey];
+                const percentage = (month.total / maxAmount) * 100;
+
+                const barWrapper = document.createElement('div');
+                barWrapper.className = 'chart-bar-wrapper';
+
+                const bar = document.createElement('div');
+                bar.className = 'chart-bar';
+                bar.style.height = '0%';
+                
+                const value = document.createElement('div');
+                value.className = 'chart-bar-value';
+                value.textContent = `$${month.total.toLocaleString()}`;
+                bar.appendChild(value);
+
+                const label = document.createElement('div');
+                label.className = 'chart-bar-label';
+                label.textContent = month.name;
+
+                barWrapper.appendChild(bar);
+                barWrapper.appendChild(label);
+                chartBars.appendChild(barWrapper);
+
+                // Animate bar height - faster
+                setTimeout(() => {
+                    bar.style.transition = 'height 0.4s ease-out';
+                    bar.style.height = `${percentage}%`;
+                }, index * 30);
+            });
+        }
+
+        function populateDonationsTable() {
+            const tableBody = document.getElementById('donationsTableBody');
+            tableBody.innerHTML = '';
+
+            const sortedDonations = [...donationsData].sort((a, b) => 
+                new Date(b.date) - new Date(a.date)
+            );
+
+            sortedDonations.forEach((donation, index) => {
+                const row = document.createElement('tr');
+                
+                const date = new Date(donation.date);
+                const formattedDate = date.toLocaleDateString('en-US', { 
+                    year: 'numeric', 
+                    month: 'short', 
+                    day: 'numeric' 
+                });
+
+                row.innerHTML = `
+                    <td class="donor-name">${donation.name}</td>
+                    <td class="donation-amount">$${donation.amount.toLocaleString()}</td>
+                    <td class="donation-date">${formattedDate}</td>
+                `;
+                
+                tableBody.appendChild(row);
+            });
+        }
+
+        function initDashboard() {
+            calculateStats();
+            generateMonthlyTrends();
+            populateDonationsTable();
+        }
+
+        // Initialize dashboard when section is visible
+        const dashboardObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    initDashboard();
+                    dashboardObserver.unobserve(entry.target);
+                }
+            });
+        }, { threshold: 0.2 });
+
+        const dashboardSection = document.getElementById('dashboard');
+        if (dashboardSection) {
+            dashboardObserver.observe(dashboardSection);
+        }
+    </script>
+</body>
+</html>
